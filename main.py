@@ -44,13 +44,8 @@ def auth():
             "roblox_id": int(new_req.json()["sub"])
         })
     print(f'[VERIFICATION] {discord_id} verified as {new_req.json()["preferred_username"]}.')
-    return redirect(url_for('finished', username=new_req.json()['preferred_username'])) if panel in [None, "", False, "false"] else redirect("http://localhost:5173/settings")
-
-@app.route('/finished')
-def finished():
-    username = request.args.get('username')
-    return render_template('finished.html', username=username)
-
+    return redirect(f"https://ermbot.xyz/verified?username={new_req.json()['preferred_username']}")
+    
 app.run(host="0.0.0.0", port=80, debug=False)
 
 
